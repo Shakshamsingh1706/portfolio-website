@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shaksham Singh — Portfolio</title>
+  <meta name="description" content="Portfolio of Shaksham Singh — DevOps / System Administrator. RHCSA, RHCE. Kubernetes • Docker • Jenkins • Terraform • AWS/GCP • Prometheus/Grafana." />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    :root{
+      --bg:#0b1220;          /* deep navy */
+      --card:#111a2b;        /* slightly lighter */
+      --text:#e6eefc;        /* near white */
+      --muted:#9fb0d0;       /* desaturated */
+      --primary:#0ea5e9;     /* sky */
+      --accent:#22d3ee;      /* cyan */
+      --ring: rgba(34,211,238,.4);
+      --shadow:0 10px 25px rgba(2,8,23,.35);
+    }
+    [data-theme="light"]{
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --text:#0b1220;
+      --muted:#5b6a86;
+      --primary:#0ea5e9;
+      --accent:#06b6d4;
+      --ring: rgba(14,165,233,.35);
+      --shadow:0 10px 25px rgba(2,8,23,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(14,165,233,.10), transparent 60%),
+                  radial-gradient(800px 600px at 0% 0%, rgba(34,211,238,.08), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* layout */
+    .container{max-width:1100px;margin:auto;padding:0 20px}
+    header.nav{
+      position:sticky;top:0;z-index:40;background:linear-gradient(180deg, rgba(11,18,32,.9), rgba(11,18,32,.75));
+      backdrop-filter: blur(10px); border-bottom:1px solid rgba(255,255,255,.06)
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:800;letter-spacing:.4px}
+    .brand .dot{width:10px;height:10px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:9999px;box-shadow:0 0 20px var(--accent)}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .nav-links a{color:var(--muted);font-weight:600}
+    .nav-links a.active,.nav-links a:hover{color:var(--text)}
+    .btn{display:inline-flex;gap:8px;align-items:center;font-weight:700;border:1px solid rgba(255,255,255,.12);color:var(--text);padding:10px 14px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));box-shadow:var(--shadow)}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{border-color:transparent;background:#00ff88;color:black}
+    .btn.secondary{border-color:transparent;background:#ff6b35;color:white}
+
+    /* hero */
+    .hero{display:grid;grid-template-columns:1.2fr .9fr;gap:40px;align-items:center;padding:70px 0}
+    .kicker{display:inline-block;padding:6px 10px;border-radius:9999px;border:1px solid rgba(255,255,255,.12);color:var(--muted);font-size:12px;margin-bottom:16px}
+    h1{font-size:44px;line-height:1.15;margin:0 0 14px;color:#00ff88}
+    .hero-name{font-size:44px;line-height:1.15;margin:0 0 14px;color:#00ff88}
+    .hero-titles{color:var(--text);font-size:18px;margin:0 0 20px;font-weight:600}
+    .lead{color:var(--text);font-size:18px;margin:0 0 20px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .socials{display:flex;gap:10px;margin-top:10px}
+    .socials a{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:12px;border:1px solid rgba(255,255,255,.12)}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:18px; box-shadow:var(--shadow)}
+    .avatar{aspect-ratio:1/1;border-radius:50%;overflow:hidden;border:3px solid #00ff88;background:transparent}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* sections */
+    section{padding:60px 0}
+    .section-title{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px}
+    .section-title h2{font-size:28px;margin:0}
+    .muted{color:var(--muted)}
+
+    /* about */
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .stat{padding:16px;border-radius:14px;background:var(--card);text-align:center}
+    .stat b{font-size:22px}
+
+    /* skills */
+    .chips{display:flex;gap:10px;flex-wrap:wrap}
+    .chip{padding:8px 12px;border-radius:9999px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));font-weight:600;color:var(--text)}
+
+    /* projects */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .project{padding:16px}
+    .thumb{aspect-ratio:16/10;border-radius:14px;overflow:hidden;background:#0a0f1a;border:1px solid rgba(255,255,255,.08);display:grid;place-items:center}
+    .thumb span{font-size:13px;color:var(--muted)}
+    .p-title{font-weight:800;margin:10px 0 6px}
+
+    /* timeline */
+    .timeline{display:grid;gap:12px}
+    .t-item{padding:14px 16px;border-left:3px solid var(--primary);background:var(--card);border-radius:10px}
+    .t-item small{color:var(--muted)}
+
+    /* contact */
+    form{display:grid;gap:12px}
+    input,textarea{padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.02);color:var(--text);outline:none}
+    input:focus,textarea:focus{box-shadow:0 0 0 4px var(--ring);border-color:transparent}
+    textarea{min-height:120px;resize:vertical}
+
+    footer{padding:40px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.08)}
+
+    /* responsive */
+    .menu-btn{display:none}
+    @media (max-width: 960px){
+      .hero{grid-template-columns:1fr;gap:22px;padding-top:42px}
+      .about{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 720px){
+      .grid{grid-template-columns:1fr}
+      .nav-links{display:none}
+      .menu-btn{display:inline-flex}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand"><div class="dot"></div> <span>Shaksham Singh</span></div>
+      <nav class="nav-links" id="navLinks">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certs">Certifications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="btn" id="themeToggle" title="Toggle theme">🌓</button>
+      <button class="btn menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="container hero">
+    <div>
+      <h1>Hi, I'm</h1>
+      <div class="hero-name">Shaksham Singh</div>
+      <div class="hero-titles">DevOps Engineer | Cloud Enthusiast | Automation Learner</div>
+      <p class="lead">Passionate about building scalable, automated systems and exploring the latest in DevOps and cloud technologies.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="resume.pdf" download>View Resume</a>
+        <a class="btn secondary" href="#projects">View Projects</a>
+      </div>
+      <div class="socials">
+        <a href="https://github.com/your-username" target="_blank" aria-label="GitHub" rel="noopener">🐙</a>
+        <a href="https://www.linkedin.com/in/your-handle" target="_blank" aria-label="LinkedIn" rel="noopener">in</a>
+        <a href="https://x.com/your-handle" target="_blank" aria-label="X" rel="noopener">𝕏</a>
+      </div>
+    </div>
+    <div class="card avatar">
+      <!-- Replace src with your actual photo file path/name -->
+      <img src="assets/profile.jpg" alt="Shaksham Singh profile" />
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>About</h2>
+        <span class="muted">Lucknow → Cloud • Automation • Reliability</span>
+      </div>
+      <div class="about">
+        <div class="card" style="padding:18px">
+          <p>I'm a BCA grad and fresher targeting DevOps/System Admin roles. I enjoy building infra-as-code, automating deployments, and monitoring with clean dashboards. I’ve practiced on GCP VMs and local Kubernetes (Minikube/Kind/ArgoCD).</p>
+          <p>Currently exploring <b>ArgoCD, Argo Rollouts & Workflows</b>, with hands-on GitOps deployments and progressive delivery.</p>
+        </div>
+        <div class="stat-grid">
+          <div class="stat"><b>20+ </b><div class="muted">Mini Labs</div></div>
+          <div class="stat"><b>8+ </b><div class="muted">Tech Skills</div></div>
+          <div class="stat"><b>3 </b><div class="muted">Certs/Licenses</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-title">
+        <h2>Skills</h2>
+        <span class="muted">Core tools I use</span>
+      </div>
+      <div class="card" style="padding:18px">
+        <div class="chips">
+          <span class="chip">Linux (RHEL/Rocky)</span>
+          <span class="chip">Shell Scripting</span>
+          <span class="chip">Git & GitHub</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Kubernetes</span>
+          <span class="chip">Jenkins</span>
+          <span class="chip">Terraform</span>
+          <span class="chip">Ansible</span>
+          <span class="chip">Prometheus</span>
+          <span class="chip">Grafana</span>
+          <span class="chip">Nagios</span>
+          <span class="chip">AWS</span>
+          <span class="chip">GCP</span>
+          <span class="chip">Python</span>
+          <span class="chip">Bash</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-title">
+        <h2>Projects</h2>
+        <span class="muted">Selected work & labs</span>
+      </div>
+      <div class="grid">
+        <article class="card project">
+          <div class="thumb"><span>Docker → K8s → ArgoCD</span></div>
+          <div class="p-title">3-Tier App (Node + Flask + DB)</div>
+          <p class="muted">Built CI/CD: containerized services, pushed images to DockerHub, GitOps deploy with ArgoCD, monitored via Prometheus & Grafana.</p>
+          <div class="hero-actions">
+            <a class="btn" href="https://github.com/your-username/three-tier-k8s" target="_blank" rel="noopener">Code</a>
+            <a class="btn" href="#" target="_blank">Live</a>
+          </div>
+        </article>
+        <article class="card project">
+          <div class="thumb"><span>Terraform • Ansible</span></div>
+          <div class="p-title">IaC on AWS/GCP</div>
+          <p class="muted">Provisioned infra with Terraform, configured instances via Ansible, demonstrated immutable infra patterns and variables/modules.</p>
+          <div class="hero-actions">
+            <a class="btn" href="https://github.com/your-username/iac-labs" target="_blank" rel="noopener">Code</a>
+            <a class="btn" href="#">Docs</a>
+          </div>
+        </article>
+        <article class="card project">
+          <div class="thumb"><span>Jenkins • GitHub Actions</span></div>
+          <div class="p-title">CI Pipelines</div>
+          <p class="muted">Built pipelines with stages for build/test/security scan/push and deployment; included caching and matrix builds.</p>
+          <div class="hero-actions">
+            <a class="btn" href="https://github.com/your-username/ci-cd-pipelines" target="_blank" rel="noopener">Code</a>
+            <a class="btn" href="#">Readme</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certs">
+    <div class="container">
+      <div class="section-title">
+        <h2>Certifications</h2>
+        <span class="muted">Creds & training</span>
+      </div>
+      <div class="grid">
+        <div class="card" style="padding:16px">
+          <b>RHCSA</b>
+          <p class="muted">Red Hat Certified System Administrator</p>
+        </div>
+        <div class="card" style="padding:16px">
+          <b>RHCE (EX294)</b>
+          <p class="muted">Red Hat Certified Engineer — Ansible Automation</p>
+        </div>
+        <div class="card" style="padding:16px">
+          <b>Foundational Cloud</b>
+          <p class="muted">Self-paced labs on AWS/GCP (IAM, VPC, Compute, Storage)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE / EXPERIENCE (Optional) -->
+  <section id="timeline">
+    <div class="container">
+      <div class="section-title">
+        <h2>Recent Highlights</h2>
+        <span class="muted">Learning & milestones</span>
+      </div>
+      <div class="timeline">
+        <div class="t-item"><b>Aug 2025</b> — Completed ArgoCD + Rollouts practice for progressive delivery. <br><small>GitOps, Canary & Blue-Green with analysis</small></div>
+        <div class="t-item"><b>Jul 2025</b> — Built Jenkins pipeline for container build & push; integrated security scan. <br><small>Trivy, multi-stage Dockerfile</small></div>
+        <div class="t-item"><b>Jun 2025</b> — Deployed monitoring stack (Prometheus + Grafana) with exporters. <br><small>Dashboards, alerts, SLOs</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <span class="muted">Let’s collaborate</span>
+      </div>
+      <div class="about">
+        <div class="card" style="padding:18px">
+          <form name="contact" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="contact" />
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea name="message" placeholder="Tell me about your project…" required></textarea>
+            </label>
+            <button class="btn primary" type="submit">Send Message</button>
+          </form>
+        </div>
+        <div class="card" style="padding:18px">
+          <p><b>Email:</b> <a href="mailto:shaksham@example.com">shaksham@example.com</a></p>
+          <p><b>Location:</b> Lucknow, IN</p>
+          <p><b>Availability:</b> Open to Intern/Fresher roles, L1/L2 Service Desk / System Admin / DevOps</p>
+          <p class="muted">Prefer supporting US-based clients; comfortable with night shifts and ticket SLAs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Shaksham Singh. Built with ❤ and lots of YAML.
+    </div>
+  </footer>
+
+  <script>
+    // Smooth-scroll active state
+    const links = document.querySelectorAll('.nav-links a');
+    const sections = [...links].map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const onScroll = () => {
+      let idx = sections.findIndex(sec => sec.getBoundingClientRect().top > 120);
+      idx = (idx === -1 ? sections.length : idx) - 1;
+      links.forEach((a,i)=>a.classList.toggle('active', i===idx));
+    };
+    document.addEventListener('scroll', onScroll, {passive:true});
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn?.addEventListener('click', ()=>{
+      const isOpen = getComputedStyle(navLinks).display !== 'none';
+      navLinks.style.display = isOpen ? 'none' : 'flex';
+    });
+
+    // Theme toggle (persist)
+    const themeToggle = document.getElementById('themeToggle');
+    const applyTheme = t => document.documentElement.setAttribute('data-theme', t);
+    const current = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark');
+    applyTheme(current);
+    themeToggle?.addEventListener('click', ()=>{
+      const next = (document.documentElement.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
+      applyTheme(next); localStorage.setItem('theme', next);
+    });
+
+    // Year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
