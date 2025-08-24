@@ -1,6 +1,6 @@
 export const personalData = {
   name: "Shaksham Singh",
-  profile: "/profile.jpg",
+  profile: "/profile.svg",
   designation: "DevOps Engineer | Cloud Enthusiast | Automation Learner",
   description: "I'm a passionate DevOps engineer with expertise in building scalable, automated systems. I specialize in Kubernetes, Docker, Jenkins, Terraform, and cloud technologies. Currently exploring the latest in DevOps practices and cloud infrastructure.",
   email: "shakshamsingh1432@gmail.com",

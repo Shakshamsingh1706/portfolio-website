@@ -77,11 +77,11 @@ const Hero = () => {
           {/* Right Content - Profile Image */}
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
-              <div className="w-80 h-80 rounded-full border-4 border-green-400 overflow-hidden bg-gray-800">
+              <div className="w-80 h-80 rounded-full border-4 border-green-400 overflow-hidden bg-gray-800 shadow-2xl">
                 <img
                   src={personalData.profile}
                   alt={personalData.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   onError={(e) => {
                     e.target.style.display = 'none'
                     e.target.nextSibling.style.display = 'flex'
@@ -91,6 +91,10 @@ const Hero = () => {
                   Profile Image
                 </div>
               </div>
+              
+              {/* Decorative Elements */}
+              <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-400 rounded-full animate-pulse"></div>
+              <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-orange-500 rounded-full animate-pulse delay-1000"></div>
             </div>
           </div>
         </div>
